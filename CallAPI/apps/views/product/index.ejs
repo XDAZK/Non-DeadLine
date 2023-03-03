@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css" />  
+    <title>INDEX PAGE</title>
+</head>
+
+<body>
+    <div>
+        <center>
+            <h1> --- LIST PRODUCTS --- </h1>
+            <button><a href="/product/addProduct">Thêm Sản Phẩm</a></button>
+        </center>      
+        
+    </br>
+    </br>
+        <table id="example" class="display">
+            <thead>
+                <tr>
+                    <th><b>ID</b></th>
+                    <th><b>Name</b></th>
+                    <th><b>Picture</b></th>
+                    <th><b>Price</b></th>
+                    <th><b></b></th>
+                    <th><b></b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let product of productList)  {%>
+                    <tr>               
+                        <td><%=product.Id%></td>
+                        <td><%=product.Name%></td>
+                        <td><img style="height: 100px; width: 100px;" src="<%=product.Picture%>"/></td>
+                        <td><%=product.Price%></td>  
+                        <td><button><a href="/product/editProduct/<%=product.Id%>">Edit</a></button></td>
+                        <td><button><a href="/product/deleteProduct/<%=product.Id%>" onclick="alert('Are you sure')">Delete</a></button></td>                                 
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="pagination" style="margin-left: 550px; margin-top: 30px;">
+        <a href="#">«</a>
+        <a class="active" href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">»</a>   
+    </div> -->
+    <div class="pagination" style="margin-left: 700px; margin-top: 30px;">      
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <% if (i === currentPage) { %>
+            <span class="active"><%= i %></span>
+          <% } else { %>
+            <a href="/product/?page=<%= i %>"><%= i %></a>
+          <% } %>
+        <% } %>   
+      </div>
+</body>
+</html>
